@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--project: POM파일의 최상위 요소로, 프로젝트 정보와 의존성 정보를 담고 있습니다. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--modelVersion: 현재 POM 모델의 버전을 명시합니다. 일반적으로 4.0.0 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--groupId: 프로젝트의 그룹 아이디를 설정 -->
+    <groupId>project.spring4</groupId>
+    <!--artifactId: 프로젝트의 아티팩트 아이디를 설정합니다. 이 값은 Maven 빌드시 생성되는 파일의 이름에도 사용됩니다.-->
+    <!--아티팩트: 소프트웨어 개발 프로젝트에서 생성된 결과물. 주로 소프트웨어를 빌드하고 패키징하는 과정에서 생성된 파일들을 의미합니다. -->
+    <artifactId>mvc</artifactId>
+    <!--version: project의 버전 정보를 설정합니다. -->
+    <version>1.0-SNAPSHOT</version>
+    <!--name: project의 이름을 설정합니다. -->
+    <name>mvc project</name>
+    <!--packaging: 프로젝트가 빌드될 때 생성되는 파일의 종류를 설정합니다. -->
+    <packaging>war</packaging>
+
+    <!--properties: 프로젝트에서 사용할 속성을 정의합니다. 예를 들어 빌드 시 사용할 JDK 버전, Spring Framework버전 등이 있습니다.-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <spring.version>4.3.30.RELEASE</spring.version>
+        <junit.version>5.9.1</junit.version>
+    </properties>
+
+    <!--dependencies: 프로젝트에서 사용할 의존성 라이브러리를 정의합니다. 각 의존성은 groupId, artifactId, version으로 구성됩니다. -->
+    <dependencies>
+        <!--dependency: 하나의 의존성 라이브러리를 정의합니다. -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.7.0</version>
+            <!--exclusions: 의존성 라이브러리에서 제외할 라이브러리를 설정합니다.-->
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of log4j-core -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <!--scope: 의존성 라이브러리의 범위를 설정합니다. -->
+            <!--compile, runtime, test, provided등이 있습니다. -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!--build: 프로젝트 빌드 설정을 정의합니다. -->
+    <build>
+        <!--plugins: 빌드시 사용할 플러그인을 설정합니다. -->
+        <!--플러그인: 소프트웨어 개발 도구에서 사용되는 모듈로, 특정한 작업을 수행하기 위한 코드나 기능 집합입니다. -->
+        <plugins>
+            <!--plugin: 하나의 빌드 플러그인을 정의합니다. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+
+    </build>
+</project>

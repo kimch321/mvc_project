@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--beans: Spring IoC 컨테이너가 관리하는 객체(bean)의 정의를 포함하는 XML 파일의 루트 태그입니다. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--어노테이션을 기반으로 하는 Spring MVC의 기능을 사용하도록 설정하는데 사용됩니다. -->
+    <!--어노테이션: 자바 소스 코드에 추가하여 사용할 수 있는 메타데이터의 일종입니다. -->
+    <!--어노테이션을 이용해 자동 객체 생성, 의존성 주입등의 작업을 손쉽게 수행할 수 있다. -->
+    <mvc:annotation-driven />
+
+    <!--Spring 컨테이너에서 관리되는 bean객체를 정의하는 부분입니다. InternalResourceViewResolver클래스를 사용하여 뷰 이름을 실제 JSP파일과 매핑하고 있습니다.  -->
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!--지정된 태그와 하위 패키지에서 Spring bean을 자동으로 검색하도록 Spring 컨테이너를 구성합니다. -->
+    <context:component-scan base-package="project.spring4.mvc" />
+
+</beans>
