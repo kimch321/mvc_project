@@ -9,7 +9,7 @@
     <!--groupId: 프로젝트의 그룹 아이디를 설정 -->
     <groupId>project.spring4</groupId>
     <!--artifactId: 프로젝트의 아티팩트 아이디를 설정합니다. 이 값은 Maven 빌드시 생성되는 파일의 이름에도 사용됩니다.-->
-    <!--아티팩트: 소프트웨어 개발 프로젝트에서 생성된 결과물. 주로 소프트웨어를 빌드하고 패키징하는 과정에서 생성된 파일들을 의미합니다. -->
+        <!--아티팩트: 소프트웨어 개발 프로젝트에서 생성된 결과물. 주로 소프트웨어를 빌드하고 패키징하는 과정에서 생성된 파일들을 의미합니다. -->
     <artifactId>mvc</artifactId>
     <!--version: project의 버전 정보를 설정합니다. -->
     <version>1.0-SNAPSHOT</version>
@@ -24,7 +24,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <spring.version>4.3.30.RELEASE</spring.version>
-        <junit.version>5.9.1</junit.version>
+        <junit.version>4.13.2</junit.version>
+        <log4j.version>2.12.4</log4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
     </properties>
 
     <!--dependencies: 프로젝트에서 사용할 의존성 라이브러리를 정의합니다. 각 의존성은 groupId, artifactId, version으로 구성됩니다. -->
@@ -34,7 +36,15 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of log4j-core -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -61,9 +71,42 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>2.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
         </dependency>
 
         <dependency>
@@ -79,16 +122,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <!--scope: 의존성 라이브러리의 범위를 설정합니다. -->
-            <!--compile, runtime, test, provided등이 있습니다. -->
-            <scope>test</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
@@ -98,7 +138,7 @@
     <!--build: 프로젝트 빌드 설정을 정의합니다. -->
     <build>
         <!--plugins: 빌드시 사용할 플러그인을 설정합니다. -->
-        <!--플러그인: 소프트웨어 개발 도구에서 사용되는 모듈로, 특정한 작업을 수행하기 위한 코드나 기능 집합입니다. -->
+            <!--플러그인: 소프트웨어 개발 도구에서 사용되는 모듈로, 특정한 작업을 수행하기 위한 코드나 기능 집합입니다. -->
         <plugins>
             <!--plugin: 하나의 빌드 플러그인을 정의합니다. -->
             <plugin>

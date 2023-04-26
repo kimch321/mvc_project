@@ -6,8 +6,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--어노테이션을 기반으로 하는 Spring MVC의 기능을 사용하도록 설정하는데 사용됩니다. -->
-    <!--어노테이션: 자바 소스 코드에 추가하여 사용할 수 있는 메타데이터의 일종입니다. -->
-    <!--어노테이션을 이용해 자동 객체 생성, 의존성 주입등의 작업을 손쉽게 수행할 수 있다. -->
+        <!--어노테이션: 자바 소스 코드에 추가하여 사용할 수 있는 메타데이터의 일종입니다. -->
+        <!--어노테이션을 이용해 자동 객체 생성, 의존성 주입등의 작업을 손쉽게 수행할 수 있다. -->
     <mvc:annotation-driven />
 
     <!--Spring 컨테이너에서 관리되는 bean객체를 정의하는 부분입니다. InternalResourceViewResolver클래스를 사용하여 뷰 이름을 실제 JSP파일과 매핑하고 있습니다.  -->

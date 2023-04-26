@@ -20,7 +20,28 @@ public class EMPServiceImpl implements EMPService{
     }
 
     @Override
+    public int newEmp(EMPVO emp) {
+        return 0;
+    }
+
+    @Override
     public List<EMPVO> readEmpList() {
         return empdao.selectEmp();
     }
+
+    @Override
+    public EMPVO readOneEmp(int empno) {
+        return null;
+    }
+
+    @Override
+    public int modifyEmp(int empno) {
+        return 0;
+    }
+
+    @Override
+    public int remoceEmp(int empno) {
+        return 0;
+    }
+
 }
