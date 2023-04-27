@@ -20,8 +20,12 @@ public class EMPServiceImpl implements EMPService{
     }
 
     @Override
-    public int newEmp(EMPVO emp) {
-        return 0;
+    public boolean newEmp(EMPVO emp) {
+        boolean result = false;
+
+        if(empdao.insertEmp(emp) > 0) result = true;
+
+        return result;
     }
 
     @Override
@@ -31,17 +35,17 @@ public class EMPServiceImpl implements EMPService{
 
     @Override
     public EMPVO readOneEmp(int empno) {
-        return null;
+        return empdao.selectOneEmp(empno);
     }
 
     @Override
-    public int modifyEmp(int empno) {
-        return 0;
+    public boolean modifyEmp(int empno) {
+        return false;
     }
 
     @Override
-    public int remoceEmp(int empno) {
-        return 0;
+    public boolean remoceEmp(int empno) {
+        return false;
     }
 
 }

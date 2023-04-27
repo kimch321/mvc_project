@@ -17,17 +17,13 @@ public class EMPVO {
     }
 
     public EMPVO(int empno, String fname, String lname, String email, String phone, String hdate, String jobid, int sal, double comm, int mgrid, int deptno) {
-        this.empno = empno;
-        this.fname = fname;
+        this(empno, fname, email, jobid, deptno);
         this.lname = lname;
-        this.email = email;
         this.phone = phone;
         this.hdate = hdate;
-        this.jobid = jobid;
         this.sal = sal;
         this.comm = comm;
         this.mgrid = mgrid;
-        this.deptno = deptno;
     }
 
     public EMPVO(int empno, String fname, String email, String jobid, int deptno) {

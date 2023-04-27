@@ -1,5 +1,7 @@
 package project.spring4.mvc.employee.dao;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +19,7 @@ import java.util.List;
 // ("empdao")은 해당 빈의 이름을 지정해주는 것입니다. 지정해주지 않으면 클래스 이름으로 정해집니다.
 @Repository("empdao")
 class EMPDAOImpl implements EMPDAO {
+    private static final Logger logger = LogManager.getLogger(EMPDAOImpl.class);
     // 얘는 뭐하는 애더라....
     private JdbcTemplate jdbcTemplate;
 
@@ -37,7 +40,22 @@ class EMPDAOImpl implements EMPDAO {
 
     @Override
     public int insertEmp(EMPVO emp) {
-        return 0;
+        int cnt = -1;
+
+        try{
+            Object[] params = new Object[] {
+                    emp.getEmpno(), emp.getFname(),emp.getLname(), emp.getEmail(), emp.getPhone(), emp.getHdate(),
+                    emp.getJobid(), emp.getSal(), emp.getComm(), emp.getMgrid(), emp.getDeptno()
+            };
+
+            cnt = jdbcTemplate.update(insertEmpSQL,params);
+
+        } catch (Exception ex) {
+            logger.error("insertEMP 에러!");
+            ex.printStackTrace();
+        }
+
+        return cnt;
     }
 
     @Override
@@ -49,7 +67,11 @@ class EMPDAOImpl implements EMPDAO {
 
     @Override
     public EMPVO selectOneEmp(int empno) {
-        return null;
+        Object[] param = new Object[] { empno };
+        RowMapper<EMPVO> mapper = new EMPOneMapper();
+        EMPVO emp = jdbcTemplate.queryForObject(selectOneEmpSQL, mapper, param);
+
+        return emp;
     }
 
     @Override
@@ -70,5 +92,17 @@ class EMPDAOImpl implements EMPDAO {
             return emp;
         }
     }
+
+    class EMPOneMapper implements RowMapper<EMPVO> {
+        @Override
+        public EMPVO mapRow(ResultSet rs, int i) throws SQLException {
+            EMPVO emp = new EMPVO(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),
+                    rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getDouble(9),
+                    rs.getInt(10),rs.getInt(11));
+
+            return emp;
+        }
+    }
+
 }
 

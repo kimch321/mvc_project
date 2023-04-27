@@ -10,7 +10,9 @@
         <tr><th>사원번호</th><th>이름</th><th>이메일</th><th>직무번호</th><th>부서번호</th></tr>
 
         <c:forEach items="${emps}" var="emp">
-            <tr><td>${emp.empno}</td><td>${emp.fname}</td><td>${emp.email}</td><td>${emp.jobid}</td><td>${emp.deptno}</td></tr>
+            <tr><td>${emp.empno}</td>
+                <td><a href="/view?empno=${emp.empno}">${emp.fname}</a></td>
+                <td>${emp.email}</td><td>${emp.jobid}</td><td>${emp.deptno}</td></tr>
         </c:forEach>
 
     </table>
